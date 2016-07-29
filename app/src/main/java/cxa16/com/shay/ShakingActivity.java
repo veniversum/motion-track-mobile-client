@@ -19,7 +19,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +52,7 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
     private ProgressBar mProgressBar;
+    private ImageView mSpinner;
     private CountDownTimer mCountDownTimer;
     private float[] data = new float[500];
     private int datai;
@@ -72,6 +77,8 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
         mInstructions = (TextView) findViewById(R.id.shaking_instruction);
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mSpinner = (ImageView) findViewById(R.id.spinner);
+
         i = 0;
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mProgressBar.setProgress(i);
@@ -91,6 +98,15 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                 i++;
                 mProgressBar.setProgress(i);
                 mTitle.setText("Awaiting Server Response");
+
+                RotateAnimation ra = new RotateAnimation(0, 360*10, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+                ra.setDuration(10000);
+                ra.setInterpolator(new LinearInterpolator());
+                ra.setFillAfter(true);
+                mSpinner.setVisibility(View.VISIBLE);
+
+                mSpinner.startAnimation(ra);
+
                 Log.i("a", Arrays.toString(data));
                 Transaction transaction = null;
                 if (!isSent) {
