@@ -39,15 +39,16 @@ public class PaymentDoneActivity extends AppCompatActivity {
 
     private SharedPreferences prefs;
 
-    private final GlobalVars globalVariable = (GlobalVars) getApplicationContext();
-    private boolean isSender = globalVariable.getSender();
+    private GlobalVars globalVariable;
+    private boolean isSender;
 
     Context myContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        globalVariable = (GlobalVars) getApplicationContext();
+        isSender = globalVariable.getSender();
         setContentView(R.layout.activity_payment_done);
 
         myContext = this;

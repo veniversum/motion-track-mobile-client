@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cxa16.com.shay">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".GlobalVars"
         android:allowBackup="true"
@@ -35,6 +36,7 @@
             android:name=".SendMoneyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_send_money"
+            android:parentActivityName=".WalletActivity"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ShakeStartActivity"

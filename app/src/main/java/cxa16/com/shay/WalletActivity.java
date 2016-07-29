@@ -34,7 +34,7 @@ public class WalletActivity extends AppCompatActivity {
     private TextView title_wallet;
     private TextView title_amount;
 
-    private final GlobalVars globalVariable = (GlobalVars) getApplicationContext();
+    private GlobalVars globalVariable;
 
     Context myContext;
 
@@ -43,6 +43,7 @@ public class WalletActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        globalVariable = (GlobalVars) getApplicationContext();
 
         setContentView(R.layout.activity_wallet);
 
