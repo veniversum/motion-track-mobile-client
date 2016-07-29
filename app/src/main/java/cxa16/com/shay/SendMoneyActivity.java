@@ -75,7 +75,6 @@ public class SendMoneyActivity extends AppCompatActivity {
             Float amountInput= Float.parseFloat(amountInputStr);
             prefs.edit().putFloat("sendAmount", amountInput).apply();
 
-
             // it was the 1st button
             Intent intent = new Intent(myContext, ShakeStartActivity.class);
             startActivity(intent);
@@ -100,6 +99,8 @@ public class SendMoneyActivity extends AppCompatActivity {
         amount_field.requestFocus();
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(amount_field, InputMethodManager.SHOW_IMPLICIT);
+
+        validateSend ();
     }
 
     @Override
