@@ -11,15 +11,15 @@
 
     <ImageButton
         android:id="@+id/button_shake"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/startshaking"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:background="@null"
-        android:layout_below="@id/content_sendMoney"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="85dp"
+        android:rotation="-30"
         />
 
 
@@ -27,11 +27,15 @@
         android:id="@+id/title_tap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap to start shake"
+        android:layout_below="@+id/button_shake"
+
+        android:text="Hold both phones together\nand start shaking to start\nthe authentication!"
         android:textColor="#444444"
+        android:textAlignment="center"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         />
 
