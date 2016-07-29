@@ -10,6 +10,9 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.daimajia.numberprogressbar.NumberProgressBar;
+
+
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
@@ -17,6 +20,8 @@ import android.view.View;
 public class ShakingActivity extends AppCompatActivity {
 
     Context myContext;
+
+    private NumberProgressBar bnp;
 
     final Handler handler = new Handler();
     @Override
@@ -28,6 +33,7 @@ public class ShakingActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_shaking);
 
+        bnp = (NumberProgressBar)findViewById(R.id.number_progress_bar);
 
         handler.postDelayed(new Runnable() {
             @Override
@@ -41,9 +47,10 @@ public class ShakingActivity extends AppCompatActivity {
 
     private void paymentDone () {
 
+        /*
         Intent intent = new Intent(myContext, PaymentDoneActivity.class);
         startActivity(intent);
-
+*/
     }
 
     @Override
