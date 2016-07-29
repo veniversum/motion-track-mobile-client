@@ -1,6 +1,8 @@
 package cxa16.com.shay;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.FragmentBreadCrumbs;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +13,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.CountDownTimer;
 import android.os.PersistableBundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +31,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.jlmd.animatedcircleloadingview.AnimatedCircleLoadingView;
+import com.github.jlmd.animatedcircleloadingview.component.PercentIndicatorView;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -62,10 +69,13 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
     private float amount;
     private boolean isSent;
     private String user;
+    private AnimatedCircleLoadingView animatedCircleLoadingView;
+    private Activity myActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myActivity = this;
         globalVariable = (GlobalVars) getApplicationContext();
         isSender = globalVariable.getSender();
         amount = globalVariable.getAmount();
@@ -82,13 +92,15 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
         i = 0;
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mProgressBar.setProgress(i);
+        animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
+        animatedCircleLoadingView.startDeterminate();
         mCountDownTimer=new CountDownTimer(5000,29) {
 
             @Override
             public void onTick(long millisUntilFinished) {
                 i++;
                 mProgressBar.setProgress(i);
-
+                animatedCircleLoadingView.setPercent((int) ((5000-millisUntilFinished)/50));
             }
 
             @Override
@@ -117,11 +129,20 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                                 gotoPaymentDone(other, amount);
 
                                 Toast.makeText(myContext, "Sent to " + other + " $" + amount, Toast.LENGTH_LONG).show();
+                                animatedCircleLoadingView.stopOk();
                             }
 
                             @Override
                             public void onError(Transaction t) {
                                 Toast.makeText(myContext, "Error, unable to process payment", Toast.LENGTH_LONG).show();
+                                animatedCircleLoadingView.stopFailure();
+                                animatedCircleLoadingView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        animatedCircleLoadingView.resetLoading();
+                                        myActivity.finish();
+                                    }
+                                });
                             }
                         });
 
@@ -133,11 +154,21 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                                 gotoPaymentDone(other, amount);
 
                                 Toast.makeText(myContext, "Received from " + other + " $" + amount, Toast.LENGTH_LONG).show();
+                                animatedCircleLoadingView.stopOk();
+
                             }
 
                             @Override
                             public void onError(Transaction t) {
                                 Toast.makeText(myContext, "Error, unable to process payment", Toast.LENGTH_LONG).show();
+                                animatedCircleLoadingView.stopFailure();
+                                animatedCircleLoadingView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        animatedCircleLoadingView.resetLoading();
+                                        myActivity.finish();
+                                    }
+                                });
                             }
                         });
                     }
