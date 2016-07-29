@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -69,6 +70,12 @@ public class SendMoneyActivity extends AppCompatActivity {
 
     View.OnClickListener clickedSend = new View.OnClickListener() {
         public void onClick(View v) {
+
+            String amountInputStr = amount_field.getText().toString();
+            Float amountInput= Float.parseFloat(amountInputStr);
+            prefs.edit().putFloat("sendAmount", amountInput).apply();
+
+
             // it was the 1st button
             Intent intent = new Intent(myContext, ShakeStartActivity.class);
             startActivity(intent);
