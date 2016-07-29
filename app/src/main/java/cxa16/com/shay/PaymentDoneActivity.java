@@ -41,6 +41,7 @@ public class PaymentDoneActivity extends AppCompatActivity {
 
     private GlobalVars globalVariable;
     private boolean isSender;
+    private String other;
 
     Context myContext;
 
@@ -73,7 +74,8 @@ public class PaymentDoneActivity extends AppCompatActivity {
                 "com.example.app", Context.MODE_PRIVATE);
 
         float totalMoney = prefs.getFloat("totalMoney", 0);
-        float sentAmount = prefs.getFloat("sendAmount", 0);
+        //float sentAmount = prefs.getFloat("sendAmount", 0);
+        float sentAmount = globalVariable.getAmount();
 
         totalMoney -= sentAmount;
 
@@ -94,12 +96,14 @@ public class PaymentDoneActivity extends AppCompatActivity {
             }
         });
 
+        other = globalVariable.getOther();
+
         if (isSender){
             title_successfully_paid.setText("Successfully paid");
-            title_to_from.setText("to Ren Jie");
+            title_to_from.setText("to "+other);
         } else {
             title_successfully_paid.setText("Successfully received");
-            title_to_from.setText("from Ren Jie");
+            title_to_from.setText("from "+other);
         }
 
     }

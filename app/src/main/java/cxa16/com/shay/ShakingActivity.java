@@ -3,6 +3,7 @@ package cxa16.com.shay;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -97,6 +98,8 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                         transaction = new SenderTransaction(user, amount, data, new Transaction.TransactionEventListener() {
                             @Override
                             public void onSuccess(Transaction t, float amount, String other) {
+                                gotoPaymentDone(other, amount);
+
                                 Toast.makeText(myContext, "Sent to " + other + " $" + amount, Toast.LENGTH_LONG).show();
                             }
 
@@ -110,6 +113,9 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                         transaction = new ReceiverTransaction(user, data, new Transaction.TransactionEventListener() {
                             @Override
                             public void onSuccess(Transaction t, float amount, String other) {
+
+                                gotoPaymentDone(other, amount);
+
                                 Toast.makeText(myContext, "Received from " + other + " $" + amount, Toast.LENGTH_LONG).show();
                             }
 
@@ -126,6 +132,16 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
             }
         };
         mCountDownTimer.start();
+    }
+
+    private void gotoPaymentDone (String other, float amount) {
+
+        globalVariable.setOther(other);
+        globalVariable.setAmount(amount);
+
+        Intent intent = new Intent(myContext, PaymentDoneActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
