@@ -39,6 +39,9 @@ public class PaymentDoneActivity extends AppCompatActivity {
 
     private SharedPreferences prefs;
 
+    private final GlobalVars globalVariable = (GlobalVars) getApplicationContext();
+    private boolean isSender = globalVariable.getSender();
+
     Context myContext;
 
     @Override
@@ -89,6 +92,14 @@ public class PaymentDoneActivity extends AppCompatActivity {
 
             }
         });
+
+        if (isSender){
+            title_successfully_paid.setText("Successfully paid");
+            title_to_from.setText("to Ren Jie");
+        } else {
+            title_successfully_paid.setText("Successfully received");
+            title_to_from.setText("from Ren Jie");
+        }
 
     }
 
