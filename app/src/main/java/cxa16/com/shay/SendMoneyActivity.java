@@ -3,14 +3,20 @@ package cxa16.com.shay;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,18 +28,11 @@ public class SendMoneyActivity extends AppCompatActivity {
 
     private ImageButton sendButton;
     private TextView title_sendMoney;
+    private EditText amount_field;
     Context myContext;
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
+    private SharedPreferences prefs;
 
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
+    int amountFieldLength = 0;
 
 
     @Override
@@ -46,11 +45,26 @@ public class SendMoneyActivity extends AppCompatActivity {
 
         title_sendMoney = (TextView) findViewById(R.id.title_sendMoney);
         sendButton = (ImageButton) findViewById(R.id.button_send);
+        amount_field = (EditText) findViewById(R.id.amount_field);
         sendButton.setOnClickListener(clickedSend);
 
         Typeface fontBold = Typeface.createFromAsset(getAssets(), "TheSansSemiBold-Plain.ttf");
 
         title_sendMoney.setTypeface(fontBold);
+
+        prefs = this.getSharedPreferences(
+                "com.example.app", Context.MODE_PRIVATE);
+
+
+        amount_field.addTextChangedListener(new TextWatcher(){
+            public void afterTextChanged(Editable s) {
+                amountFieldLength = s.length();
+                validateSend();
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after){}
+            public void onTextChanged(CharSequence s, int start, int before, int count){}
+
+        });
     }
 
     View.OnClickListener clickedSend = new View.OnClickListener() {
@@ -61,21 +75,35 @@ public class SendMoneyActivity extends AppCompatActivity {
         }
     };
 
+
+    private void validateSend () {
+
+        if (amountFieldLength > 0){
+            sendButton.setEnabled(true);
+        } else {
+            sendButton.setEnabled(false);
+        }
+
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
+        amount_field.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(amount_field, InputMethodManager.SHOW_IMPLICIT);
     }
 
-    private void toggle() {
-
-    }
-
-    private void hide() {
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.
+                    INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return true;
     }
 
 

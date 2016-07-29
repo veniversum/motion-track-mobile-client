@@ -60,6 +60,7 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginLeft="10dp"
                 android:width="200dp"
+                android:inputType="numberDecimal"
                 />
 
         </LinearLayout>
@@ -69,7 +70,7 @@
             android:id="@+id/button_send"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/icon_paymoney"
+            android:src="@drawable/icon_paymoney_state"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:background="@null"
