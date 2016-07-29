@@ -31,7 +31,9 @@ public class ShakingActivity extends AppCompatActivity {
     private ProgressBar mProgressBar;
     private CountDownTimer mCountDownTimer;
     private int i;
-
+    private final GlobalVars globalVariable = (GlobalVars) getApplicationContext();
+    private boolean isSender = globalVariable.getSender();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

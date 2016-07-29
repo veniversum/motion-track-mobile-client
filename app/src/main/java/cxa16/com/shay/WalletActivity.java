@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.icu.text.DecimalFormat;
 import android.icu.text.NumberFormat;
+import android.provider.Settings;
 import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,8 @@ public class WalletActivity extends AppCompatActivity {
     private TextView title_wallet;
     private TextView title_amount;
 
+    private final GlobalVars globalVariable = (GlobalVars) getApplicationContext();
+
     Context myContext;
 
     private SharedPreferences prefs;
@@ -46,10 +49,24 @@ public class WalletActivity extends AppCompatActivity {
         myContext = this;
 
         sendButton = (ImageButton) findViewById(R.id.button_send);
-        sendButton.setOnClickListener(clickedSend);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariable.setSender(true);
+                Intent intent = new Intent(myContext, SendMoneyActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        sendButton = (ImageButton) findViewById(R.id.button_receive);
-        sendButton.setOnClickListener(clickedReceive);
+        receiveButton = (ImageButton) findViewById(R.id.button_receive);
+        receiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                globalVariable.setSender(false);
+                Intent intent = new Intent(myContext, ShakeStartActivity.class);
+                startActivity(intent);
+            }
+        });
 
         title_wallet = (TextView) findViewById(R.id.title_wallet);
         title_amount = (TextView) findViewById(R.id.title_amount);
@@ -75,22 +92,6 @@ public class WalletActivity extends AppCompatActivity {
     public String formatDecimal(float number) {
         return String.format("%10.2f", number);
     }
-
-
-    View.OnClickListener clickedSend = new View.OnClickListener() {
-        public void onClick(View v) {
-            // it was the 1st button
-            Intent intent = new Intent(myContext, SendMoneyActivity.class);
-            startActivity(intent);
-        }
-    };
-
-    View.OnClickListener clickedReceive = new View.OnClickListener() {
-        public void onClick(View v) {
-            // it was the 1st button
-
-        }
-    };
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
