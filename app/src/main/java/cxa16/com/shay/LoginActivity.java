@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         titleApp = (TextView) findViewById(R.id.title_app);
         titleTag = (TextView) findViewById(R.id.title_tag);
         fieldUID = (EditText) findViewById(R.id.uid_field);
-        fieldPWD = (EditText) findViewById(R.id.uid_field);
+        fieldPWD = (EditText) findViewById(R.id.pwd_field);
 
         Typeface fontLogo = Typeface.createFromAsset(getAssets(), "FREESCPT.TTF");
         Typeface fontLight = Typeface.createFromAsset(getAssets(), "TheSansExtraLight-Plain.ttf");
@@ -133,11 +133,15 @@ public class LoginActivity extends AppCompatActivity {
 
         if (valid){
 
+            fieldUID.setText("");
+            fieldPWD.setText("");
+
             prefs.edit().putString("category", loginCat).apply();
             prefs.edit().putString("loggedInId", uidInput).apply();
 
             Intent intent = new Intent(myContext, WalletActivity.class);
             startActivity(intent);
+
         } else {
             erroLogin();
         }
