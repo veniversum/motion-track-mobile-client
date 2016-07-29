@@ -29,7 +29,8 @@
             android:name=".WalletActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_wallet"
-            android:theme="@style/FullscreenTheme" />
+            android:theme="@style/FullscreenTheme"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".SendMoneyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
