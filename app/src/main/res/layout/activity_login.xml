@@ -53,6 +53,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/uid_field"
         android:width="200dp"
+        android:inputType="textPassword"
         />
 
     <Button
