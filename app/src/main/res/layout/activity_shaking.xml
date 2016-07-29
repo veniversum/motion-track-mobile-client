@@ -8,17 +8,39 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+
     <TextView
         android:id="@+id/title_wallet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SHAKING"
+        android:text="Shaking In Progress"
         android:textColor="#444444"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_marginTop="90dp" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_below="@+id/title_wallet"
+        android:layout_height="25dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="80dp"
+        style="@android:style/Widget.ProgressBar.Horizontal" />
+
+    <TextView
+        android:id="@+id/shaking_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progress_bar"
+        android:textAlignment="center"
+        android:text="Continue shaking the phones\nin a unique fashion until\nthe progress bar completes!"
+        android:textColor="#444444"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp" />
 
 
 </RelativeLayout>
