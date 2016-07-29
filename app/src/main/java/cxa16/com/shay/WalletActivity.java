@@ -3,16 +3,23 @@ package cxa16.com.shay;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.icu.text.DecimalFormat;
+import android.icu.text.NumberFormat;
+import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -28,23 +35,7 @@ public class WalletActivity extends AppCompatActivity {
 
     Context myContext;
 
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
-
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
-
-    /**
-     * Some older devices needs a small delay between UI widget updates
-     * and a change of the status and navigation bar.
-     */
-
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +59,23 @@ public class WalletActivity extends AppCompatActivity {
         title_wallet.setTypeface(fontBold);
         title_amount.setTypeface(fontBold);
 
+        prefs = this.getSharedPreferences(
+                "com.example.app", Context.MODE_PRIVATE);
+
+        float totalMoney = 550;
+        if (prefs.contains("totalMoney")){
+            totalMoney = prefs.getFloat("totalMoney", 0);
+        }
+
+        String totalMoneyFormat = "$"+formatDecimal(totalMoney).trim();
+        title_amount.setText(totalMoneyFormat);
+
     }
+
+    public String formatDecimal(float number) {
+        return String.format("%10.2f", number);
+    }
+
 
     View.OnClickListener clickedSend = new View.OnClickListener() {
         public void onClick(View v) {
@@ -103,16 +110,5 @@ public class WalletActivity extends AppCompatActivity {
 
     }
 
-    @SuppressLint("InlinedApi")
-    private void show() {
 
-    }
-
-    /**
-     * Schedules a call to hide() in [delay] milliseconds, canceling any
-     * previously scheduled calls.
-     */
-    private void delayedHide(int delayMillis) {
-
-    }
 }
