@@ -73,11 +73,15 @@ public class PaymentDoneActivity extends AppCompatActivity {
         prefs = this.getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
 
-        float totalMoney = prefs.getFloat("totalMoney", 0);
+        //float totalMoney = prefs.getFloat("totalMoney", 0);
         //float sentAmount = prefs.getFloat("sendAmount", 0);
+
+        float totalMoney = globalVariable.getTotal();
         float sentAmount = globalVariable.getAmount();
 
         totalMoney -= sentAmount;
+        globalVariable.setTotal(totalMoney);
+
 
         prefs.edit().putFloat("totalMoney", totalMoney).apply();
 
