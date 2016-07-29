@@ -32,6 +32,7 @@ public class SendMoneyActivity extends AppCompatActivity {
     private EditText amount_field;
     Context myContext;
     private SharedPreferences prefs;
+    private GlobalVars globalVariable;
 
     int amountFieldLength = 0;
 
@@ -39,6 +40,7 @@ public class SendMoneyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        globalVariable = (GlobalVars) getApplicationContext();
 
         setContentView(R.layout.activity_send_money);
 
@@ -73,6 +75,7 @@ public class SendMoneyActivity extends AppCompatActivity {
 
             String amountInputStr = amount_field.getText().toString();
             Float amountInput= Float.parseFloat(amountInputStr);
+            globalVariable.setAmount(amountInput);
             prefs.edit().putFloat("sendAmount", amountInput).apply();
 
             // it was the 1st button

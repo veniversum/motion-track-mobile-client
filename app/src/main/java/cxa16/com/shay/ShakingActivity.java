@@ -48,19 +48,22 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
     private Sensor senAccelerometer;
     private ProgressBar mProgressBar;
     private CountDownTimer mCountDownTimer;
-    private float[] data = new float[100];
+    private float[] data = new float[500];
     private int datai;
     private int i;
     private GlobalVars globalVariable;
     private boolean isSender;
     private float amount;
     private boolean isSent;
+    private String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         globalVariable = (GlobalVars) getApplicationContext();
         isSender = globalVariable.getSender();
+        amount = globalVariable.getAmount();
+        user = globalVariable.getUser();
 
         myContext = this;
         setContentView(R.layout.activity_shaking);
@@ -68,7 +71,6 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
         mInstructions = (TextView) findViewById(R.id.shaking_instruction);
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         i = 0;
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mProgressBar.setProgress(i);
@@ -92,7 +94,7 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                 Transaction transaction = null;
                 if (!isSent) {
                     if (isSender) {
-                        transaction = new SenderTransaction("test_sender_1234", amount, data, new Transaction.TransactionEventListener() {
+                        transaction = new SenderTransaction(user, amount, data, new Transaction.TransactionEventListener() {
                             @Override
                             public void onSuccess(Transaction t, float amount, String other) {
                                 Toast.makeText(myContext, "Sent to " + other + " $" + amount, Toast.LENGTH_LONG).show();
@@ -105,7 +107,7 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                         });
 
                     } else {
-                        transaction = new ReceiverTransaction("test_receiver_1234", data, new Transaction.TransactionEventListener() {
+                        transaction = new ReceiverTransaction(user, data, new Transaction.TransactionEventListener() {
                             @Override
                             public void onSuccess(Transaction t, float amount, String other) {
                                 Toast.makeText(myContext, "Received from " + other + " $" + amount, Toast.LENGTH_LONG).show();
@@ -127,10 +129,15 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
     }
 
     @Override
-    protected void onResume() {
-        senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_FASTEST);
-        super.onResume();
+    protected void onPause() {
+        senSensorManager.unregisterListener(this);
+        super.onPause();
+    }
 
+    @Override
+    protected void onResume() {
+        senSensorManager.registerListener(this, senAccelerometer, 10000);
+        super.onResume();
     }
 
     @Override
@@ -148,7 +155,7 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
         float z = sensorEvent.values[2];
         Float shakeMagnitude = (float)Math.sqrt(x * x + y * y + z * z);
 
-        if (datai < data.length-1) data[datai++] = shakeMagnitude;
+        if (datai < data.length) data[datai++] = shakeMagnitude;
 
     }
 

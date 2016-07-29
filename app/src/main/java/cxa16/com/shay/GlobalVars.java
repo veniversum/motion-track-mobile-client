@@ -7,7 +7,24 @@ import android.app.Application;
  */
 public class GlobalVars extends Application {
     private boolean isSender;
+    private float amount;
+    private String user;
 
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public boolean getSender() {
         return isSender;

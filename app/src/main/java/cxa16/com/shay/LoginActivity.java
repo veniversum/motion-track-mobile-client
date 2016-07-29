@@ -47,12 +47,15 @@ public class LoginActivity extends AppCompatActivity {
     String loginCat;
 
     private SharedPreferences prefs;
+    private GlobalVars globalVariable;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        globalVariable = (GlobalVars) getApplicationContext();
+
 
         setContentView(R.layout.activity_login);
 
@@ -132,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (valid){
-
+            globalVariable.setUser(fieldUID.getText().toString());
             fieldUID.setText("");
             fieldPWD.setText("");
 
