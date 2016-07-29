@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="cxa16.com.shay.WalletActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+
+    <ImageButton
+        android:id="@+id/button_shake"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/startshaking"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:layout_below="@id/content_sendMoney"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        />
+
+
+    <TextView
+        android:id="@+id/title_tap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap to start shake"
+        android:textColor="#444444"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        />
+
+</RelativeLayout>

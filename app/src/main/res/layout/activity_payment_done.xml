@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="cxa16.com.shay.WalletActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <ImageView
+        android:id="@+id/icon_success"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/icon_success"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        />
+
+
+    <TextView
+        android:id="@+id/title_successfully_paid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Successfully paid"
+        android:textColor="#444444"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/icon_success"
+
+        />
+
+    <TextView
+        android:id="@+id/title_dollar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$250"
+        android:textColor="#444444"
+        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/title_successfully_paid"
+
+        />
+
+    <TextView
+        android:id="@+id/title_to_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="to Ren Jie"
+        android:textColor="#444444"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/title_dollar"
+
+        />
+
+</RelativeLayout>

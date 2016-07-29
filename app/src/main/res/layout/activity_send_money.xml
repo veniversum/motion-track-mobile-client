@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="cxa16.com.shay.WalletActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView
+        android:id="@+id/title_sendMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEND MONEY"
+        android:textColor="#444444"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/layout_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#ffffff"
+        android:layout_below="@id/title_sendMoney"
+        android:layout_marginTop="30dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/content_sendMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/title_dollar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$"
+                android:textColor="#444444"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                />
+
+            <EditText android:id="@+id/amount_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Amount to send"
+                android:layout_alignLeft="@id/uid_field"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/uid_field"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="10dp"
+                android:width="200dp"
+                />
+
+        </LinearLayout>
+
+
+        <ImageButton
+            android:id="@+id/button_send"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/icon_paymoney"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:layout_below="@id/content_sendMoney"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

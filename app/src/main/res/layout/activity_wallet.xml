@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context="cxa16.com.shay.WalletActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView
+        android:id="@+id/title_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MY WALLET"
+        android:textColor="#444444"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <TextView
+        android:id="@+id/title_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$550"
+        android:textColor="#444444"
+        android:textSize="85sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_below="@id/title_wallet"
+        />
+
+
+
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_centerHorizontal="true"
+           android:layout_below="@id/title_amount"
+           android:layout_marginTop="80dp"
+           >
+
+           <ImageButton
+               android:id="@+id/button_send"
+               android:layout_width="120dp"
+               android:layout_height="120dp"
+               android:src="@drawable/icon_paymoney"
+               android:scaleType="fitCenter"
+               android:adjustViewBounds="true"
+               android:background="@null"
+               android:layout_marginRight="10dp"/>
+
+           <ImageButton
+               android:id="@+id/button_receive"
+               android:layout_width="120dp"
+               android:layout_height="120dp"
+               android:src="@drawable/icon_receivemoney"
+               android:scaleType="fitCenter"
+               android:adjustViewBounds="true"
+               android:background="@null"
+               android:layout_marginLeft="10dp"/>
+
+
+       </LinearLayout>
+
+
+</RelativeLayout>
