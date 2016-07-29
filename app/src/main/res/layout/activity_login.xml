@@ -11,15 +11,16 @@
 
     <TextView
         android:id="@+id/title_app"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Shay"
-        android:textColor="#444444"
-        android:textSize="92sp"
-        android:textStyle="bold"
+        android:textColor="#3f64a8"
+        android:textSize="160sp"
         android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:layout_marginTop="20dp"
         />
+
 
     <TextView
         android:id="@+id/title_tag"
@@ -30,16 +31,18 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-35dp"
-        android:layout_alignLeft="@id/title_app"
+        android:layout_marginTop="-65dp"
+        android:paddingLeft="-25dp"
         android:layout_below="@id/title_app"
+        android:visibility="invisible"
         />
+
 
     <EditText android:id="@+id/uid_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:width="200dp"
         android:layout_below="@id/title_tag"
@@ -55,6 +58,7 @@
         android:layout_below="@id/uid_field"
         android:width="200dp"
         android:inputType="textPassword"
+        android:imeOptions="actionGo"
         />
 
     <Button
@@ -67,8 +71,8 @@
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/pwd_field"
-        android:layout_marginTop="40dp"
-        android:background="#1B6CBE"
+        android:layout_marginTop="20dp"
+        android:background="#3f64a8"
         />
 
 </RelativeLayout>
