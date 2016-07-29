@@ -38,8 +38,6 @@ public class WalletActivity extends AppCompatActivity {
 
     Context myContext;
 
-    private SharedPreferences prefs;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,17 +75,25 @@ public class WalletActivity extends AppCompatActivity {
         title_wallet.setTypeface(fontBold);
         title_amount.setTypeface(fontBold);
 
-        prefs = this.getSharedPreferences(
-                "com.example.app", Context.MODE_PRIVATE);
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         float totalMoney = 550;
-        if (prefs.contains("totalMoney")){
-            totalMoney = prefs.getFloat("totalMoney", 0);
+
+        if (globalVariable.getTotal() > 0){
+            totalMoney = globalVariable.getTotal();
+        } else {
+            globalVariable.setTotal(totalMoney);
         }
 
         String totalMoneyFormat = "$"+formatDecimal(totalMoney).trim();
         title_amount.setText(totalMoneyFormat);
-
     }
 
     public String formatDecimal(float number) {

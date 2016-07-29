@@ -140,7 +140,6 @@ public class LoginActivity extends AppCompatActivity {
             fieldPWD.setText("");
 
             prefs.edit().putString("category", loginCat).apply();
-            prefs.edit().putString("loggedInId", uidInput).apply();
 
             Intent intent = new Intent(myContext, WalletActivity.class);
             startActivity(intent);

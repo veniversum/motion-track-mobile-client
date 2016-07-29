@@ -31,7 +31,6 @@ public class SendMoneyActivity extends AppCompatActivity {
     private TextView title_sendMoney;
     private EditText amount_field;
     Context myContext;
-    private SharedPreferences prefs;
     private GlobalVars globalVariable;
 
     int amountFieldLength = 0;
@@ -55,10 +54,6 @@ public class SendMoneyActivity extends AppCompatActivity {
 
         title_sendMoney.setTypeface(fontBold);
 
-        prefs = this.getSharedPreferences(
-                "com.example.app", Context.MODE_PRIVATE);
-
-
         amount_field.addTextChangedListener(new TextWatcher(){
             public void afterTextChanged(Editable s) {
                 amountFieldLength = s.length();
@@ -76,7 +71,6 @@ public class SendMoneyActivity extends AppCompatActivity {
             String amountInputStr = amount_field.getText().toString();
             Float amountInput= Float.parseFloat(amountInputStr);
             globalVariable.setAmount(amountInput);
-            prefs.edit().putFloat("sendAmount", amountInput).apply();
 
             // it was the 1st button
             Intent intent = new Intent(myContext, ShakeStartActivity.class);
