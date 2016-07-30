@@ -27,4 +27,6 @@ dependencies {
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.koushikdutta.async:androidasync:2.1.8'
+    compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
+
 }
