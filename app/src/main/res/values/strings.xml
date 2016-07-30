@@ -14,4 +14,6 @@
     <string name="title_activity_shaking">ShakingActivity</string>
 
     <string name="title_activity_payment_done">PaymentDoneActivity</string>
+
+    <string name="title_activity_history">HistoryActivity</string>
 </resources>

@@ -8,6 +8,20 @@
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
+
+    <ImageButton
+        android:id="@+id/button_history"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icon_history"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        />
+
     <TextView
         android:id="@+id/title_wallet"
         android:layout_width="wrap_content"

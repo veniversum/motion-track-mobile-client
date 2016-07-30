@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cxa16.com.shay">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".GlobalVars"
         android:allowBackup="true"
@@ -30,8 +31,8 @@
             android:name=".WalletActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_wallet"
-            android:theme="@style/FullscreenTheme"
-            android:launchMode="singleTask"/>
+            android:launchMode="singleTask"
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".SendMoneyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -52,6 +53,11 @@
             android:name=".PaymentDoneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_payment_done"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".HistoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_history"
             android:theme="@style/FullscreenTheme"></activity>
     </application>
 

@@ -30,6 +30,7 @@ public class WalletActivity extends AppCompatActivity {
 
     private ImageButton sendButton;
     private ImageButton receiveButton;
+    private ImageButton button_history;
 
     private TextView title_wallet;
     private TextView title_amount;
@@ -63,6 +64,16 @@ public class WalletActivity extends AppCompatActivity {
             public void onClick(View view) {
                 globalVariable.setSender(false);
                 Intent intent = new Intent(myContext, ShakeStartActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button_history = (ImageButton) findViewById(R.id.button_history);
+        button_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(myContext, HistoryActivity.class);
                 startActivity(intent);
             }
         });
