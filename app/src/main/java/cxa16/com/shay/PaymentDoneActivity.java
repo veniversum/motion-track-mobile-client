@@ -79,11 +79,10 @@ public class PaymentDoneActivity extends AppCompatActivity {
         float totalMoney = globalVariable.getTotal();
         float sentAmount = globalVariable.getAmount();
 
-        totalMoney -= sentAmount;
-        globalVariable.setTotal(totalMoney);
 
 
-        prefs.edit().putFloat("totalMoney", totalMoney).apply();
+
+
 
         String totalMoneyFormat = "$"+formatDecimal(sentAmount).trim();
         title_dollar.setText(totalMoneyFormat);
@@ -103,12 +102,18 @@ public class PaymentDoneActivity extends AppCompatActivity {
         other = globalVariable.getOther();
 
         if (isSender){
+            totalMoney -= sentAmount;
             title_successfully_paid.setText("Successfully paid");
             title_to_from.setText("to "+other);
         } else {
+            totalMoney += sentAmount;
             title_successfully_paid.setText("Successfully received");
             title_to_from.setText("from "+other);
         }
+
+
+        globalVariable.setTotal(totalMoney);
+        prefs.edit().putFloat("totalMoney", totalMoney).apply();
 
     }
 
