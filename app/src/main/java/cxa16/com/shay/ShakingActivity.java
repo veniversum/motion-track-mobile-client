@@ -59,7 +59,6 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
     private ProgressBar mProgressBar;
-    private ImageView mSpinner;
     private CountDownTimer mCountDownTimer;
     private float[] data = new float[500];
     private int datai;
@@ -87,7 +86,6 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
         mInstructions = (TextView) findViewById(R.id.shaking_instruction);
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mSpinner = (ImageView) findViewById(R.id.spinner);
 
         i = 0;
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -115,9 +113,6 @@ public class ShakingActivity extends AppCompatActivity implements SensorEventLis
                 ra.setDuration(10000);
                 ra.setInterpolator(new LinearInterpolator());
                 ra.setFillAfter(true);
-                mSpinner.setVisibility(View.VISIBLE);
-
-                mSpinner.startAnimation(ra);
 
                 Log.i("a", Arrays.toString(data));
                 Transaction transaction = null;
