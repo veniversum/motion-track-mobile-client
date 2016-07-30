@@ -17,13 +17,9 @@ import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class ReceiverTransaction extends Transaction {
-
-    static {
-        url = "http://e94826c3.ngrok.io/receive/";
-    }
-
     public ReceiverTransaction(String id, float[] data, TransactionEventListener listener) {
         super(id, data, listener);
+        url = "http://e94826c3.ngrok.io/receive/";
     }
 
     @Override

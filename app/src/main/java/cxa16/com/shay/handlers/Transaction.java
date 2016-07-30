@@ -30,7 +30,7 @@ public abstract class Transaction{
 
     public enum Status {PENDING, SUCCESS, INVALID, INACTIVE}
 
-    protected static String url;
+    protected String url;
     protected TransactionEventListener listener;
 
     protected Context myContext;

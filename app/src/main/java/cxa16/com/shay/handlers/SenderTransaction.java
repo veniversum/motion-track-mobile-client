@@ -21,15 +21,10 @@ import cz.msebera.android.httpclient.message.BasicHeader;
 import cz.msebera.android.httpclient.protocol.HTTP;
 
 public class SenderTransaction extends Transaction {
-
-    static {
-        url = "http://e94826c3.ngrok.io/send/";
-    }
-
-
     public SenderTransaction(String id, float amount, float[] data, TransactionEventListener listener) {
         super(id, data, listener);
         this.amount = amount;
+        url = "http://e94826c3.ngrok.io/send/";
     }
 
     @Override
