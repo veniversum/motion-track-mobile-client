@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
@@ -73,13 +74,13 @@ public class PaymentDoneActivity extends AppCompatActivity {
         prefs = this.getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
 
-        float totalMoney = prefs.getFloat("totalMoney", 0);
+//        float totalMoney = prefs.getFloat("totalMoney", 0);
         //float sentAmount = prefs.getFloat("sendAmount", 0);
         float sentAmount = globalVariable.getAmount();
 
-        totalMoney -= sentAmount;
-
-        prefs.edit().putFloat("totalMoney", totalMoney).apply();
+//        totalMoney -= sentAmount;
+//
+//        prefs.edit().putFloat("totalMoney", totalMoney).apply();
 
         String totalMoneyFormat = "$"+formatDecimal(sentAmount).trim();
         title_dollar.setText(totalMoneyFormat);
@@ -98,12 +99,17 @@ public class PaymentDoneActivity extends AppCompatActivity {
 
         other = globalVariable.getOther();
 
+        Log.wtf("Hello", String.valueOf(sentAmount));
+        Log.wtf("Hello", String.valueOf(globalVariable.getTotal()));
+
         if (isSender){
             title_successfully_paid.setText("Successfully paid");
             title_to_from.setText("to "+other);
+            globalVariable.setTotal(globalVariable.getTotal() - (float) sentAmount);
         } else {
             title_successfully_paid.setText("Successfully received");
             title_to_from.setText("from "+other);
+            globalVariable.setTotal(globalVariable.getTotal() + (float) sentAmount);
         }
 
     }

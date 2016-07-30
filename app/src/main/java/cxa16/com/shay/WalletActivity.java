@@ -35,10 +35,17 @@ public class WalletActivity extends AppCompatActivity {
     private TextView title_amount;
 
     private GlobalVars globalVariable;
+    private float total = 0;
 
     Context myContext;
 
     private SharedPreferences prefs;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        title_amount.invalidate();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +87,19 @@ public class WalletActivity extends AppCompatActivity {
         prefs = this.getSharedPreferences(
                 "com.example.app", Context.MODE_PRIVATE);
 
-        float totalMoney = 550;
-        if (prefs.contains("totalMoney")){
-            totalMoney = prefs.getFloat("totalMoney", 0);
+//        float totalMoney = 550;
+//        if (prefs.contains("totalMoney")){
+//            totalMoney = prefs.getFloat("totalMoney", 0);
+//        }
+//        globalVariable.setTotal(totalMoney);
+        Log.wtf("CurrentTotal", String.valueOf(globalVariable.getTotal()));
+
+        if (globalVariable.getTotal() < 1) {
+            globalVariable.setTotal(550);
         }
 
-        String totalMoneyFormat = "$"+formatDecimal(totalMoney).trim();
+
+        String totalMoneyFormat = "$"+formatDecimal(globalVariable.getTotal()).trim();
         title_amount.setText(totalMoneyFormat);
 
     }
