@@ -248,7 +248,7 @@ public class HistoryActivity extends AppCompatActivity {
                         break;
                     case 2:
                         newValuesFull = groceriesListFull;
-                        newValues = foodList;
+                        newValues = groceriesList;
                         break;
                     case 3:
                         newValuesFull = apparelsListFull;
