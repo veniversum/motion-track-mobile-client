@@ -16,9 +16,13 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+<<<<<<< HEAD
         maven {
             url "http://dl.bintray.com/jlmd/maven"
         }
+=======
+        maven { url "https://jitpack.io" }
+>>>>>>> transaction_history
     }
 }
 

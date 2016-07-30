@@ -39,12 +39,16 @@
 
     </LinearLayout>
 
-
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:layout_marginTop="60dp"/>
 
     <ListView
         android:id="@+id/list"
-        android:layout_below="@id/content_top"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/chart"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
     </ListView>

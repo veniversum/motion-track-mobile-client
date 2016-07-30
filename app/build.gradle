@@ -27,6 +27,10 @@ dependencies {
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.koushikdutta.async:androidasync:2.1.8'
+<<<<<<< HEAD
     compile 'com.github.jlmd:AnimatedCircleLoadingView:1.1.5@aar'
 
+=======
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+>>>>>>> transaction_history
 }
