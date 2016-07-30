@@ -66,30 +66,20 @@
 
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/note_txn"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_below="@+id/content_status"
-        android:hint="Enter a note here"
-        android:gravity="top"
-        android:padding="10dp"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/note_border"/>
 
     <Button
         android:id="@+id/button_back"
         style="?metaButtonBarButtonStyle"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:text="BACK TO WALLET"
         android:textColor="#ffffff"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/note_txn"
-        android:layout_marginTop="25dp"
-        android:background="#3f64a8" />
+        android:layout_below="@id/content_status"
+        android:layout_marginTop="30dp"
+        android:background="#3f64a8"
+        />
 
 
 
