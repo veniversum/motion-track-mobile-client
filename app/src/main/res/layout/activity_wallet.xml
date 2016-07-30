@@ -11,15 +11,15 @@
 
     <ImageButton
         android:id="@+id/button_history"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/icon_history"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
         android:background="@null"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
         />
 
     <TextView
